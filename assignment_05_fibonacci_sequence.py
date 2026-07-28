@@ -43,6 +43,46 @@
 # - N must be a positive integer. If it is not, print an error message.
 # - Each part must be implemented in its own function (see scaffold below).
 #
+def print_fibonacci_terms(n):
+    if n <= 0:
+        print("Error: Number of terms must be a positive integer.")
+        return
+
+    a, b = 0, 1
+    sequence = []
+    for i in range(n):
+        sequence.append(a)
+        a, b = b, a + b
+
+    print("Fibonacci sequence:", " ".join(map(str, sequence)))
+
+
+# PART B — Check if a Number Belongs to the Sequence
+def check_fibonacci_number(num):
+    if num < 0:
+        print(f"{num} is NOT a Fibonacci number.")
+        return
+
+    a, b = 0, 1
+    while a <= num:
+        if a == num:
+            print(f"{num} is a Fibonacci number.")
+            return
+        a, b = b, a + b
+
+    print(f"{num} is NOT a Fibonacci number.")
+
+
+# =============================================================================
+# MAIN PROGRAM
+# =============================================================================
+print("=== PART A: Print Fibonacci Terms ===")
+n = int(input("How many terms? "))
+print_fibonacci_terms(n)
+
+print("\n=== PART B: Check Fibonacci Number ===")
+num = int(input("Enter a number to check: "))
+check_fibonacci_number(num)
 
 #
 # =============================================================================
