@@ -90,3 +90,81 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+def add_student(students):
+    name = input("Student name: ")
+    student_id = input("Student ID: ")
+    scores = []
+    try:
+        num_scores = int(input("How many scores? "))
+        for i in range(num_scores):
+            score = int(input(f"Enter score {i+1}: "))
+            scores.append(score)
+    except ValueError:
+        print("Invalid input. Scores must be numbers.")
+        return
+    
+    student = {
+        "name": name,
+        "id": student_id,
+        "scores": scores
+    }
+    students.append(student)
+    print(f'Student "{name}" added successfully.')
+
+# Function to display all students
+def display_students(students):
+    if not students:
+        print("No student records available.")
+        return
+    
+    print("--------------------------------------------------")
+    print("Name           ID          Scores         Average")
+    print("--------------------------------------------------")
+    for student in students:
+        avg = sum(student["scores"]) / len(student["scores"]) if student["scores"] else 0
+        scores_str = ", ".join(map(str, student["scores"]))
+        print(f'{student["name"]:<14} {student["id"]:<10} {scores_str:<13} {avg:.2f}')
+    print("--------------------------------------------------")
+
+# Function to calculate average score for a specific student
+def calculate_average(students):
+    student_id = input("Enter student ID: ")
+    for student in students:
+        if student["id"] == student_id:
+            if student["scores"]:
+                avg = sum(student["scores"]) / len(student["scores"])
+                print(f'{student["name"]}\'s average score: {avg:.2f}')
+            else:
+                print(f'{student["name"]} has no scores recorded.')
+            return
+    print("Student ID not found.")
+
+# Main program loop
+def main():
+    students = []
+    while True:
+        print("\n===============================")
+        print("     STUDENT RECORD SYSTEM MENU")
+        print("===============================")
+        print("1. Add student")
+        print("2. Display all students")
+        print("3. Calculate average score")
+        print("4. Quit")
+        
+        choice = input("Enter your choice (1-4): ")
+        
+        if choice == "1":
+            add_student(students)
+        elif choice == "2":
+            display_students(students)
+        elif choice == "3":
+            calculate_average(students)
+        elif choice == "4":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 4.")
+
+# Run the program
+if __name__ == "__main__":
+    main()
