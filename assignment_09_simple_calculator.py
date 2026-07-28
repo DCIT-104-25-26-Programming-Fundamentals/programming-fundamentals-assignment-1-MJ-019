@@ -67,4 +67,74 @@
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
+def add(x, y):
+    return x + y
+
+def subtract(x, y):
+    return x - y
+
+def multiply(x, y):
+    return x * y
+
+def divide(x, y):
+    if y == 0:
+        return "Error: Cannot divide by zero."
+    return round(x / y, 2)
+
+def modulus(x, y):
+    if y == 0:
+        return "Error: Cannot perform modulus with zero."
+    return x % y
+
+def exponentiate(x, y):
+    return x ** y
+
+# Main program loop
+def main():
+    while True:
+        print("\n============================")
+        print("       SIMPLE CALCULATOR")
+        print("============================")
+        print("1. Addition")
+        print("2. Subtraction")
+        print("3. Multiplication")
+        print("4. Division")
+        print("5. Modulus")
+        print("6. Exponentiation")
+        print("7. Quit")
+        
+        choice = input("Select an operation (1-7): ")
+        
+        if choice == "7":
+            print("Goodbye!")
+            break
+        
+        if choice in ["1", "2", "3", "4", "5", "6"]:
+            try:
+                x = float(input("Enter first number : "))
+                y = float(input("Enter second number: "))
+            except ValueError:
+                print("Error: Please enter valid numbers.")
+                continue
+            
+            if choice == "1":
+                print(f"Result: {x} + {y} = {add(x, y)}")
+            elif choice == "2":
+                print(f"Result: {x} - {y} = {subtract(x, y)}")
+            elif choice == "3":
+                print(f"Result: {x} * {y} = {multiply(x, y)}")
+            elif choice == "4":
+                result = divide(x, y)
+                print(f"Result: {x} / {y} = {result}")
+            elif choice == "5":
+                result = modulus(x, y)
+                print(f"Result: {x} % {y} = {result}")
+            elif choice == "6":
+                print(f"Result: {x} ** {y} = {exponentiate(x, y)}")
+        else:
+            print("Invalid choice. Please select a number between 1 and 7.")
+
+# Run the program
+if __name__ == "__main__":
+    main()
 
